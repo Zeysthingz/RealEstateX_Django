@@ -1,8 +1,17 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 
 
-# İÖ
-
+# index page
 def index(request):
-    return HttpResponse('Hello World')
+    context = {
+
+    }
+    return render(request, 'index.html', context)
+
+
+# about page
+def about(request):
+    context = {
+
+    }
+    return render(request, 'about.html', context)
