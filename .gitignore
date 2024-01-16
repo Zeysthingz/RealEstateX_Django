@@ -38,6 +38,8 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+#DB
+db.sqlite3
 # Unit test / coverage reports
 htmlcov/
 .tox/
