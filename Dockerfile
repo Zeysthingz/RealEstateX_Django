@@ -5,9 +5,12 @@ RUN apt-get update
 
 # Install PostgreSQL development libraries
 RUN apt-get install libpq-dev -y
+RUN apt-get install python3-dev build-essential -y
+
+# Install Postgres alive checker (pg_isready)
 RUN apt-get install postgresql-client -y
 
-RUN apt-get install python3-dev build-essential -y
+
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1

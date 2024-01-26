@@ -1,16 +1,41 @@
 version: "3.8"
 
 services:
-
   postgres:
     image: postgres:latest
     env_file:
       - ./docker.env
+    networks:
+      - main_network
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - "postgres_data:/var/lib/postgresql/data/"
     command: -p 5432
+
+
+  celery:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A realestateX worker -B -E -l INFO
+    env_file:
+      - ./docker.env
+    volumes:
+      - celery-data:/srv/public
+    depends_on:
+      - app
+      - redis
+    networks:
+      - main_network
+
+
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    networks:
+      - main_network
 
   app:
     build:
@@ -18,18 +43,28 @@ services:
       dockerfile: Dockerfile
     depends_on:
         - postgres
+        - redis
     ports:
       - "0.0.0.0:8000:8000"
     command: python manage.py runserver 0.0.0.0:8000
     env_file:
       - ./docker.env
+    networks:
+        - main_network
     environment:
       - SERVICE_NAME=app
-      - INITIAL_SETUP=true
+      - INITIAL_SETUP=false
     volumes:
       - .:/srv/app
+
+
+networks:
+    main_network:
+
+
 volumes:
   static_data:
   postgres_data:
+  celery-data:
 
 
