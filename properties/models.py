@@ -4,6 +4,8 @@ from realtors.models import (
     AbstractModel,
     RealtorsModel
 )
+
+
 class PropertiesListingModel(AbstractModel):
     realtor = models.ForeignKey(
         RealtorsModel,
@@ -63,6 +65,37 @@ class PropertiesListingModel(AbstractModel):
         blank=True,
         verbose_name="Photos"
     )
+    photo_in_one = models.ImageField(
+        upload_to='media/',
+        blank=True,
+        verbose_name="Inside Photos"
+    )
+    photo_in_two = models.ImageField(
+        upload_to='media/',
+        blank=True,
+        verbose_name="Inside Photos"
+    )
+    photo_in_three = models.ImageField(
+        upload_to='media/',
+        blank=True,
+        verbose_name="Inside Photos"
+    )
+    photo_in_four = models.ImageField(
+        upload_to='media/',
+        blank=True,
+        verbose_name="Inside Photos"
+    )
+    photo_in_five = models.ImageField(
+        upload_to='media/',
+        blank=True,
+        verbose_name="Inside Photos"
+    )
+    photo_in_six = models.ImageField(
+        upload_to='media/',
+        blank=True,
+        verbose_name="Inside Photos"
+    )
+
     is_published = models.BooleanField(
         default=True,
         verbose_name="Is Published"
