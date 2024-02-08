@@ -1,9 +1,10 @@
 from datetime import datetime
 from django.db import models
-from realtors.models import RealtorsModel
-
-
-class ListingModel(models.Model):
+from realtors.models import (
+    AbstractModel,
+    RealtorsModel
+)
+class PropertiesListingModel(AbstractModel):
     realtor = models.ForeignKey(
         RealtorsModel,
         on_delete=models.DO_NOTHING,
