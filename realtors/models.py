@@ -1,8 +1,26 @@
 from django.db import models
 
 
-class RealtorsModel(models.Model):
-    name= models.CharField(
+class AbstractModel(models.Model):
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        blank=True,
+        verbose_name='Updated',
+        help_text='',
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        blank=True,
+        verbose_name='Created',
+        help_text='',
+    )
+
+    class Meta:
+        abstract = True
+
+
+class RealtorsModel(AbstractModel):
+    name = models.CharField(
         max_length=200,
         verbose_name="Name"
     )
@@ -25,11 +43,5 @@ class RealtorsModel(models.Model):
         default=False,
         verbose_name="Is MVP"
     )
-    hire_date = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name="Hire Date"
-    )
-
     def __str__(self):
         return self.name
-
