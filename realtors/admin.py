@@ -14,12 +14,14 @@ class RealtorsModelAdmin(admin.ModelAdmin):
         'created_at',
         'updated_at',
         'photo',
+        'hire_date'
     ]
     search_fields = [
         'name',
         'email',
         'phone',
         'created_at',
+        'hire_date'
     ]
     list_editable = [
         'name',
@@ -27,6 +29,7 @@ class RealtorsModelAdmin(admin.ModelAdmin):
         'description',
         'phone',
         'is_mvp',
+        'hire_date'
     ]
 
     class Meta:

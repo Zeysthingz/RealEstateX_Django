@@ -43,5 +43,11 @@ class RealtorsModel(AbstractModel):
         default=False,
         verbose_name="Is MVP"
     )
+    hire_date = models.DateTimeField(
+        blank=True,
+        verbose_name='Hire Date',
+        help_text='',
+    )
+
     def __str__(self):
         return self.name
